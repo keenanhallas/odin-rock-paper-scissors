@@ -8,6 +8,7 @@ The goal of this project is both to gain experience working with basic JavaScrip
 
 My intention is to focus on the following areas when completing this project:
 
+- Practicing basic problem solving with JavaScript as well as using correct syntax, variables, conditionals, loops the the other basic parts of JS covered so far
 - Utilize the problem solving framework of understand, plan, and divide & conquer, as laid out in the Odin Project problem solving lesson
 - Practice taking the time to slow down and properly understand a problem, while checking for assumptions you may have that may not be correct
 - Plan how to move forward in solving the problem, including thinking about how the program will be displayed, what the input and output should be, and what the required steps will be from input to output to get the desired result
