@@ -42,6 +42,3 @@ function playRound(playerSelection, computerSelection){
         return `You lose! ${playerSelection} loses to ${computerSelection}`
     }
 }
-
-console.log(playRound());
-// The result will be output to the console
