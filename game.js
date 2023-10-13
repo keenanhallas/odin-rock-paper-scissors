@@ -28,7 +28,6 @@ function getPlayerChoice(){
 
         // Convert answer to consistent case...
         answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
-        console.log(answer);
 
         // ...and check that it's Rock, Paper, or Scissors
         if (
