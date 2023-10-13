@@ -21,9 +21,12 @@ function getPlayerChoice(){
     while(!playerChoice){
         let answer;
 
-        // Prompt player for answer and don't continue without one
-        while(!answer){
-            answer = prompt("Please choose Rock, Paper, or Scissors:");
+        // Prompt player for answer
+        answer = prompt("Please choose Rock, Paper, or Scissors:");
+
+        //Don't continue without answer
+        if(!answer){
+            return null;
         }
 
         // Convert answer to consistent case...
@@ -83,6 +86,12 @@ function game(){
 
         //The player will be prompted for a choice
         let playerChoice = getPlayerChoice();
+
+        //End game if no player choice(user closes prompt winow)
+        if(playerChoice === null){
+            alert("Game ended. Refresh page to restart.");
+            return;
+        }
 
         //A round will be played using these choices, returning a winner
         let winner = playRound(playerChoice, computerChoice);
