@@ -15,42 +15,12 @@ function getComputerChoice(){
     }
 }
 
-function getPlayerChoice(){
-    let playerChoice;
-
-    while(!playerChoice){
-        let answer;
-
-        // Prompt player for answer
-        answer = prompt("Please choose Rock, Paper, or Scissors:");
-
-        //Don't continue without answer
-        if(!answer){
-            return null;
-        }
-
-        // Convert answer to consistent case...
-        answer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
-
-        // ...and check that it's Rock, Paper, or Scissors
-        if (
-            // If not, the user will have to type in another answer
-            answer !== "Rock" &&
-            answer !== "Paper" &&
-            answer !== "Scissors"){
-                alert("You must choose Rock, Paper, or Scissors!");
-        } else {
-            // If answer is acceptable, set playerChoice to answer and return it
-            playerChoice = answer;
-            return playerChoice;
-        }
-    }
-}
-
 // The player's choice will be compared against the computer's choice, and a winner will be declared
 
-function playRound(playerChoice, computerChoice){
+function playRound(playerChoice){
     // Compare player choice with computer choice and return the result
+    let computerChoice = getComputerChoice();
+
     if (playerChoice === computerChoice){
         alert("It's a draw!");
         return "Draw";
@@ -119,4 +89,22 @@ function game(n){
     `);
 }
 
-game(5);
+function checkChoice(event){
+    switch(event.target.id){
+        case "rock-btn":
+            playRound("Rock");
+            break;
+        case "paper-btn":
+            playRound("Paper");
+            break;
+        case "scissors-btn":
+            playRound("Scissors");
+            break;
+        default:
+            break;
+    }
+}
+
+let btnContainer = document.querySelector("#btn-container");
+
+btnContainer.addEventListener("click", checkChoice);
