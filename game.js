@@ -67,7 +67,7 @@ function playRound(playerChoice, computerChoice){
 }
 
 //A game function will handle the running of games
-function game(){
+function game(n){
     //GAME CONTEXT
 	//The player's score will be set to 0
     let playerScore = 0;
@@ -79,7 +79,7 @@ function game(){
     let rounds = 0;
 
     //5 rounds will be played
-    while(rounds < 5){
+    while(rounds < n){
         //ROUND CONTEXT
 		//A computer choice will be generated
         let computerChoice = getComputerChoice();
@@ -119,4 +119,4 @@ function game(){
     `);
 }
 
-game();
+game(5);
