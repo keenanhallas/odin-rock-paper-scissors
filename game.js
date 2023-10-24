@@ -1,16 +1,21 @@
-// The player will be prompted for a choice between rock, paper, & scissors in the console, and that choice will be stored in a variable
-
-//The computer will determine a choice between rock, paper, and scissors, and that choice will be stored in a variable
+let btnContainer = document.querySelector("#btn-container");
+let playerChoiceSpan = document.querySelector("#player-choice");
+let computerChoiceSpan = document.querySelector("#computer-choice");
+let resultPara = document.querySelector("#result");
+let startGameBtn = document.querySelector("#start-game");
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3) + 1;
     
     switch(choice) {
         case 1:
+            computerChoiceSpan.textContent = "the computer chose Rock";
             return "Rock";
         case 2:
+            computerChoiceSpan.textContent = "the computer chose Paper";
             return "Paper";
         case 3:
+            computerChoiceSpan.textContent = "the computer chose Scissors";
             return "Scissors"
     }
 }
@@ -22,49 +27,32 @@ function playRound(playerChoice){
     let computerChoice = getComputerChoice();
 
     if (playerChoice === computerChoice){
-        alert("It's a draw!");
+        resultPara.textContent = "It's a draw!";
         return "Draw";
     } else if (
         playerChoice === "Rock" && computerChoice === "Scissors"||
         playerChoice === "Paper" && computerChoice === "Rock" ||
         playerChoice === "Scissors" && computerChoice === "Paper"){
-            alert(`You win this round! ${playerChoice} beats ${computerChoice}`);
+            resultPara.textContent = `You win this round! ${playerChoice} beats ${computerChoice}`;
             return "Player";
     } else {
-        alert(`You lose this round! ${playerChoice} loses to ${computerChoice}`);
+        resultPara.textContent = `You lose this round! ${playerChoice} loses to ${computerChoice}`;
         return "Computer";
     }
 }
 
 //A game function will handle the running of games
-function game(n){
-    //GAME CONTEXT
-	//The player's score will be set to 0
+function runGame(){
+    if (btnContainer.onclick === null){
+        btnContainer.addEventListener("click", getPlayerChoice);
+    }
+    
     let playerScore = 0;
-
-    //The computer's score will be set to 0
     let computerScore = 0;
-
-    //The round count will be set to 0
     let rounds = 0;
 
     //5 rounds will be played
     while(rounds < n){
-        //ROUND CONTEXT
-		//A computer choice will be generated
-        let computerChoice = getComputerChoice();
-
-        //The player will be prompted for a choice
-        let playerChoice = getPlayerChoice();
-
-        //End game if no player choice(user closes prompt winow)
-        if(playerChoice === null){
-            alert("Game ended. Refresh page to restart.");
-            return;
-        }
-
-        //A round will be played using these choices, returning a winner
-        let winner = playRound(playerChoice, computerChoice);
 
         //The appropriate score will be updated
         if(winner === "Player"){
@@ -89,22 +77,24 @@ function game(n){
     `);
 }
 
-function checkChoice(event){
+function getPlayerChoice(event){
     switch(event.target.id){
         case "rock-btn":
+            playerChoiceSpan.textContent = "You chose Rock, ";
             playRound("Rock");
             break;
         case "paper-btn":
+            playerChoiceSpan.textContent = "You chose Paper, ";
             playRound("Paper");
             break;
         case "scissors-btn":
+            playerChoiceSpan.textContent = "You chose Scissors, ";
             playRound("Scissors");
             break;
         default:
+            playerChoiceSpan.textContent = "";
             break;
     }
 }
 
-let btnContainer = document.querySelector("#btn-container");
-
-btnContainer.addEventListener("click", checkChoice);
+startGameBtn.addEventListener("click", runGame);
