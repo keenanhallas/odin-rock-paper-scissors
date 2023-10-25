@@ -1,3 +1,4 @@
+let roundCount = document.querySelector("#round-count");
 let btnContainer = document.querySelector("#btn-container");
 let playerChoiceSpan = document.querySelector("#player-choice");
 let computerChoiceSpan = document.querySelector("#computer-choice");
@@ -20,8 +21,6 @@ function getComputerChoice(){
     }
 }
 
-// The player's choice will be compared against the computer's choice, and a winner will be declared
-
 function playRound(playerChoice){
     // Compare player choice with computer choice and return the result
     let computerChoice = getComputerChoice();
@@ -39,42 +38,6 @@ function playRound(playerChoice){
         resultPara.textContent = `You lose this round! ${playerChoice} loses to ${computerChoice}`;
         return "Computer";
     }
-}
-
-//A game function will handle the running of games
-function runGame(){
-    if (btnContainer.onclick === null){
-        btnContainer.addEventListener("click", getPlayerChoice);
-    }
-    
-    let playerScore = 0;
-    let computerScore = 0;
-    let rounds = 0;
-
-    //5 rounds will be played
-    while(rounds < n){
-
-        //The appropriate score will be updated
-        if(winner === "Player"){
-            playerScore++;
-            //The round count will be updated
-            rounds++;
-        } else if(winner === "Computer") {
-            computerScore++;
-            //The round count will be updated
-            rounds++;
-        }
-        //The rounds count will not be incremented when a draw happens
-    }
-
-    //The scores and winner will be shown
-    alert(`
-    Player score: ${playerScore}
-    Computer score: ${computerScore}
-    ${playerScore > computerScore ?
-        "Player wins!" :
-        "Computer wins!"}
-    `);
 }
 
 function getPlayerChoice(event){
@@ -97,4 +60,60 @@ function getPlayerChoice(event){
     }
 }
 
+function runGame(){
+    let playerScore = 0;
+    let computerScore = 0;
+    let round = 1;
+    let winner = "";
+
+    roundCount.textContent = `Round ${round}`;
+    resultPara.textContent = "Please choose Rock, Paper, or Scissors";
+
+    btnContainer.addEventListener("click", getPlayerChoice);
+}
+
 startGameBtn.addEventListener("click", runGame);
+
+
+
+
+
+
+
+
+
+
+// function runGame(){
+//     if (btnContainer.onclick === null){
+//         btnContainer.addEventListener("click", getPlayerChoice);
+//     }
+    
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     let rounds = 0;
+
+//     //5 rounds will be played
+//     while(rounds < n){
+
+//         //The appropriate score will be updated
+//         if(winner === "Player"){
+//             playerScore++;
+//             //The round count will be updated
+//             rounds++;
+//         } else if(winner === "Computer") {
+//             computerScore++;
+//             //The round count will be updated
+//             rounds++;
+//         }
+//         //The rounds count will not be incremented when a draw happens
+//     }
+
+//     //The scores and winner will be shown
+//     alert(`
+//     Player score: ${playerScore}
+//     Computer score: ${computerScore}
+//     ${playerScore > computerScore ?
+//         "Player wins!" :
+//         "Computer wins!"}
+//     `);
+// }
